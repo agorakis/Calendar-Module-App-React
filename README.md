@@ -6,4 +6,6 @@ To complete this project i used the following technologies React, Typescript, Ch
 
 This project is live here:
 
-Also you can clone(git clone https://github.com/agorakis/Calendar-Module-App-React.git) it in your local machine and to run it locally (npm run dev) after you install all the dependencies (npm install).
+Also you can clone (git clone https://github.com/agorakis/Calendar-Module-App-React.git) it in your local machine and to run it locally (npm run dev) after you install all the dependencies (npm install).
+
+## Development
