@@ -10,6 +10,8 @@ interface EventListProps {
 const EventList = ({ onEventClick }: EventListProps) => {
   const { data, isLoading, errors } = useEvents();
 
+  if (errors) return <p>{errors}</p>;
+
   return (
     <div className="container">
       <div className="header">
@@ -17,18 +19,21 @@ const EventList = ({ onEventClick }: EventListProps) => {
         <h2>Upcoming Events</h2>
       </div>
       {isLoading && <p>Loading....</p>}
-      {errors && <p>{errors}</p>}
-      <ul>
-        {data.map((event) => (
-          <li key={event.ID}>
-            {
-              <a onClick={() => onEventClick(event)}>
-                {event.Title} - {eventDateCalculator(event.EventStartDate)}
-              </a>
-            }
-          </li>
-        ))}
-      </ul>
+      {data ? (
+        <ul>
+          {data.map((event) => (
+            <li key={event.ID}>
+              {
+                <a onClick={() => onEventClick(event)}>
+                  {event.Title} - {eventDateCalculator(event.EventStartDate)}
+                </a>
+              }
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No events yet</p>
+      )}
     </div>
   );
 };

@@ -5,8 +5,6 @@ import {
   ModalHeader,
   ModalCloseButton,
   ModalBody,
-  VStack,
-  Container,
   Divider,
   Image,
   Grid,
@@ -16,6 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { Event } from "../hooks/useEvents";
 import dateFormatter from "../services/dateFormatter";
+import generateICS from "../services/generateICS";
+import downloadICS from "../services/downloadICS";
 
 interface EventModalProps {
   event: Event;
@@ -74,10 +74,14 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
                 DESCRIPTION
               </Box>
 
-              <Box
-                fontSize="sm"
-                dangerouslySetInnerHTML={{ __html: event.Description }}
-              />
+              {event.Description ? (
+                <Box
+                  fontSize="sm"
+                  dangerouslySetInnerHTML={{ __html: event.Description }}
+                />
+              ) : (
+                <Box fontSize="sm">No description</Box>
+              )}
             </GridItem>
 
             <GridItem
@@ -104,7 +108,14 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
               </Box>
 
               <Box fontSize="sm">
-                <a>Add to Calendar</a>
+                <a
+                  onClick={() => {
+                    const icsContent = generateICS(event);
+                    downloadICS(icsContent, `${event.ID}.ics`);
+                  }}
+                >
+                  Add to Calendar
+                </a>
               </Box>
 
               <Box fontSize="md" fontWeight="bold" mt={5}>
@@ -126,16 +137,17 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
         </ModalBody>
 
         <Divider mt={20} />
-        <VStack px={2} py={3} gap={2} alignSelf={"flex-start"}>
-          <Container>
+
+        <Grid templateRows="repeat(2, 1fr)" px={6} py={3} gap={2}>
+          <GridItem>
             Created by: {event.Author} on{" "}
             {dateFormatter(event.Created, "footer")}
-          </Container>
-          <Container>
+          </GridItem>
+          <GridItem>
             Modified by: {event.Editor} on{" "}
             {dateFormatter(event.Modified, "footer")}
-          </Container>
-        </VStack>
+          </GridItem>
+        </Grid>
       </ModalContent>
     </Modal>
   );
