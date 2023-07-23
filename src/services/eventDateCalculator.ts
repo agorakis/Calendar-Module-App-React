@@ -4,7 +4,7 @@
 const eventDateCalculator = (date: string) => {
   const eventDate = new Date(date); // Convert string of EventDate to date object
   const currentDate = new Date();
-  const timeDifference = eventDate - currentDate;
+  const timeDifference = eventDate.getTime() - currentDate.getTime();
   const oneDay = 24 * 60 * 60 * 1000;
   const oneWeek = 7 * oneDay;
 
