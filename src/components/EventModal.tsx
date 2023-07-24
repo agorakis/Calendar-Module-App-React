@@ -25,17 +25,17 @@ interface EventModalProps {
 
 const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size={"xxl"}>
+    <Modal isOpen={isOpen} onClose={onClose} size="6xl">
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>
-          <Grid templateColumns="repeat(6, 1fr)" pt={6} pr={6} gap={6}>
-            <GridItem colSpan={4} bg="gray.50">
+          <Grid templateColumns="repeat(6, 1fr)" pt={6} gap={6}>
+            <GridItem colSpan={4}>
               <Center h="100%">
                 <Image
                   src={event.BannerUrl}
                   objectFit="fill"
-                  fallbackSrc="https://via.placeholder.com/600x300"
+                  fallbackSrc="https://via.placeholder.com/700x400"
                 />
               </Center>
             </GridItem>
@@ -63,7 +63,7 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
         <ModalCloseButton />
 
         <ModalBody>
-          <Grid templateColumns="repeat(6, 1fr)" pr={6} gap={6}>
+          <Grid templateColumns="repeat(6, 1fr)" pr={6} gap={6} fontSize="sm">
             <GridItem
               colSpan={4}
               display="flex"
@@ -76,11 +76,12 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
 
               {event.Description ? (
                 <Box
-                  fontSize="sm"
-                  dangerouslySetInnerHTML={{ __html: event.Description }}
+                  maxHeight="200px"
+                  overflow="auto"
+                  dangerouslySetInnerHTML={{ __html: event.Description }} //Parsing HTML
                 />
               ) : (
-                <Box fontSize="sm">No description</Box>
+                <Box>No description</Box>
               )}
             </GridItem>
 
@@ -94,7 +95,7 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
                 DATE AND TIME
               </Box>
 
-              <Box fontSize="sm">
+              <Box>
                 {dateFormatter(event.EventStartDate, "body")}{" "}
                 {event.FullDayEvent === "TRUE"
                   ? "- Full Day Event"
@@ -107,7 +108,7 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
                     )} `}
               </Box>
 
-              <Box fontSize="sm">
+              <Box>
                 <a
                   onClick={() => {
                     const icsContent = generateICS(event);
@@ -123,13 +124,13 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
               </Box>
 
               <GridItem display="flex" flexDirection="column">
-                <Box fontSize="sm">{event.AddressLine1}</Box>
-                <Box fontSize="sm">{event.City}</Box>
-                <Box fontSize="sm">{event.PostCode}</Box>
-                <Box fontSize="sm">{event.Country}</Box>
+                <Box>{event.AddressLine1}</Box>
+                <Box>{event.City}</Box>
+                <Box>{event.PostCode}</Box>
+                <Box>{event.Country}</Box>
               </GridItem>
 
-              <Box fontSize="sm">
+              <Box>
                 <a>View Map</a>
               </Box>
             </GridItem>
@@ -138,7 +139,7 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
 
         <Divider mt={20} />
 
-        <Grid templateRows="repeat(2, 1fr)" px={6} py={3} gap={2}>
+        <Grid templateRows="repeat(2, 1fr)" px={6} py={3} gap={2} fontSize="sm">
           <GridItem>
             Created by: {event.Author} on{" "}
             {dateFormatter(event.Created, "footer")}

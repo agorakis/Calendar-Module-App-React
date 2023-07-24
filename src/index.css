@@ -1,3 +1,30 @@
+/* Styled Scrollbar */
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #fff;
+  background-image: -webkit-linear-gradient(
+    top,
+    rgb(135, 239, 243) 0%,
+    rgb(83, 229, 234) 50%,
+    rgb(54, 222, 228) 51%,
+    rgb(14, 155, 155) 100%
+  );
+}
+
+/* Styled Scrollbar */
+
 :root {
   font-family: Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -8,8 +35,9 @@
 
 body {
   margin: 0;
+  padding: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
   min-height: 100vh;
 }
 
