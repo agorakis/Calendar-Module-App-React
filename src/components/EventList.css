@@ -11,6 +11,10 @@
   column-gap: 0.3em;
 }
 
+.loader {
+  text-align: center;
+}
+
 a {
   color: rgb(3, 120, 124) !important;
   text-decoration: inherit;

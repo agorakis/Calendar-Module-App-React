@@ -1,6 +1,6 @@
 import { AiOutlineCalendar } from "react-icons/ai";
 import useEvents, { Event } from "../hooks/useEvents";
-import eventDateCalculator from "../services/eventDateCalculator";
+import eventDateCalculator from "../utils/eventDateCalculator";
 import "./EventList.css";
 
 interface EventListProps {
@@ -18,7 +18,7 @@ const EventList = ({ onEventClick }: EventListProps) => {
         <AiOutlineCalendar color="black" size={23} />
         <h2>Upcoming Events</h2>
       </div>
-      {isLoading && <p>Loading....</p>}
+      {isLoading && <p className="loader">Loading....</p>}
       {data ? (
         <ul>
           {data.map((event) => (

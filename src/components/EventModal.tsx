@@ -13,9 +13,9 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { Event } from "../hooks/useEvents";
-import dateFormatter from "../services/dateFormatter";
-import generateICS from "../services/generateICS";
-import downloadICS from "../services/downloadICS";
+import dateFormatter from "../utils/dateFormatter";
+import generateICS from "../utils/generateICS";
+import downloadICS from "../utils/downloadICS";
 
 interface EventModalProps {
   event: Event;
@@ -63,7 +63,7 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
         <ModalCloseButton />
 
         <ModalBody>
-          <Grid templateColumns="repeat(6, 1fr)" pr={6} gap={6} fontSize="sm">
+          <Grid templateColumns="repeat(6, 1fr)" gap={6} fontSize="sm">
             <GridItem
               colSpan={4}
               display="flex"
@@ -102,7 +102,7 @@ const EventModal = ({ event, isOpen, onClose }: EventModalProps) => {
                   : `- Starts: ${dateFormatter(
                       event.EventStartDate,
                       "onlyHour"
-                    )} and Ends: ${dateFormatter(
+                    )} | Ends: ${dateFormatter(
                       event.EventEndDate,
                       "onlyHour"
                     )} `}
