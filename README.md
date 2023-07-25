@@ -27,5 +27,7 @@ npm: v9.5.1
 To run this project in your local machine:
 
 git clone https://github.com/agorakis/Calendar-Module-App-React.git
+
 npm install
+
 npm run dev
